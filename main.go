@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"net/http"
 
@@ -16,36 +15,35 @@ var db *gorm.DB
 func init() {
 	//open a db connection
 	var err error
-	db1, err1 := sql.Open("mysql", "root@tcp(127.0.0.1:3306)/")
-	if err1 != nil {
-		panic(err)
-	}
-	defer db1.Close()
+	// db1, err1 := sql.Open("mysql", "root@tcp(127.0.0.1:3306)/")
+	// if err1 != nil {
+	// 	panic(err)
+	// }
 
-	_, err = db1.Exec("CREATE DATABASE IF NOT EXISTS " + "demo")
-	if err != nil {
-		panic(err)
-	}
 	db, err = gorm.Open("mysql", "root@tcp(127.0.0.1:3306)/mysql?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
 		panic("failed to connect database")
 	}
+
+	// db.Exec("CREATE DATABASE IF NOT EXISTS " + "demo")
+	// if err != nil {
+	// 	panic(err)
+	// }
 
 	//Migrate the schema
 	db.AutoMigrate(&boolean{})
 }
 
 func main() {
-
+	defer db.Close()
 	router := gin.Default()
 
-	v1 := router.Group("/booleans")
-	{
-		v1.POST("/", createBool)
-		v1.GET("/:id", fetchBool)
-		v1.DELETE("/:id", deleteBool)
-		v1.PATCH("/:id", updateBool)
-	}
+	// v1 := router.Group("/booleans")
+	// {
+	router.POST("/", createBool)
+	router.GET("/:id", fetchBool)
+	router.DELETE("/:id", deleteBool)
+	router.PATCH("/:id", updateBool)
 	router.Run()
 
 }
@@ -67,7 +65,6 @@ func createBool(c *gin.Context) {
 	var input inputBoolean //fetch the values from the user
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		fmt.Println(input)
 		return
 	}
 
