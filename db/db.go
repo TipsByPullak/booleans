@@ -1,19 +1,31 @@
-package main
+package db
 
 import (
+	"booleans/types"
+	"fmt"
+
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/mysql"
+	_ "github.com/jinzhu/gorm/dialects/mysql" //Driver to be used to connect to our DB
 )
 
-var db *gorm.DB
-
-func init() {
-	//open a db connection
-	var err error
-	db, err = gorm.Open("mysql", "root:12345@/demo?charset=utf8&parseTime=True&loc=Local")
+//StartConn : Function called to initialise a connection to the DB
+func StartConn(svPath string) *gorm.DB {
+	fmt.Printf("Please input your DB username- ")
+	var usr string
+	fmt.Scanf("%s", &usr)
+	var pass string
+	fmt.Printf("Please provide your DB password- ")
+	fmt.Scanf("%s", &pass)
+	if pass != "" {
+		pass = ":" + pass
+	}
+	dbPath := usr + pass + "@tcp(" + svPath + ")/mysql?charset=utf8&parseTime=True&loc=Local"
+	fmt.Println(dbPath)
+	db, err := gorm.Open("mysql", dbPath)
 	if err != nil {
 		panic("failed to connect database")
 	}
-	//Migrate the schema
-	db.AutoMigrate(&todoModel{})
+
+	db.AutoMigrate(&(types.Boolean{}))
+	return db
 }
