@@ -1,4 +1,5 @@
 main
 test*
+booleans
 *_test.go
 .DS_Store
