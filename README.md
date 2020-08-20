@@ -5,6 +5,12 @@
 It was a rudimentary attempt on my part to implement a RESTful service that provides a database to create, store, retrieve, update and delete booleans
 I took it up as a small project to learn [gin](https://github.com/gin-gonic/gin) and [gorm](http://gorm.io/index.html). Besides, I got a hands on of docker "containerisation" as well.
 #### *This project is still a work in progress. The README will be updated as things move*
+#### TODO List-
+1. Implement automatic creation of database in the DB server
+2. Use file/env reading to get parameters such as DB_IP, DB_username and DB_password. remember that docker implementation has to handle this differently.
+3. Implement tests for the current code
+4. Add support for OAuth/JWT, Concurrency with sync and mutex
+
 ___
 
 ### Starting the boolean service
