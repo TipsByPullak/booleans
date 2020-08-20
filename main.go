@@ -3,16 +3,13 @@ package main
 import (
 	"booleans/crudsvc"
 	"booleans/db"
-	"fmt"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 func main() {
-	var svPath string
-	fmt.Printf("Please input the IP and the port to the DB server (usage: <IP:PORT>)- ")
-	fmt.Scanf("%s", &svPath)
+	svPath := "127.0.0.1:3306"
 	db := db.StartConn(svPath)
 	defer db.Close()
 	router := gin.Default()
