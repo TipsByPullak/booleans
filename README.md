@@ -22,10 +22,11 @@ The server should have a DB named mysql (Will be corrected for in future commits
 3. run-  
   `./booleans -ip <IP to your DB server:PORT> -usr <username for the DB> -pass <password to the DB>` (For Mac/Linux)  
   or  
-  `booleans.exe -ip <IP to your DB server:PORT> -usr <username for the DB> -pass <password to the DB` (For Windows)
+  `booleans.exe -ip <IP to your DB server:PORT> -usr <username for the DB> -pass <password to the DB>` (For Windows)
     - if flag `-ip` is not provided, the service assumes that the DB server is running at "127.0.0.1:3306"
     - if `-usr` flag is not provided, the service assumes a username of root (This may not be safe in critical applications)
-    - if `-pass` flag ins not provided, the service assumes password to be empty.
+    - if `-pass` flag is not provided, the service assumes password to be empty.  
+    
 *Note: Behaviour on Windows and Linux has not been thoroughly tested. Users are welcome to contribute for the same*
 #### Using a Docker image
 *Note that due to limitations and testing conveniences, the docker image only connects to a MySQL server on the localhost for now*
