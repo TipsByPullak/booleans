@@ -20,24 +20,24 @@ The server should have a DB named mysql (Will be corrected for in future commits
 1. Clone using `git clone https://github.com/TipsByPullak/booleans`
 2. Change your directory to `booleans` (as cloned above) and run `go build`. (Assuming a proper setup of the pre-requisites, hoping no error pops up for you)
 3. run-  
-  `./booleans -ip <IP to your DB server:PORT> -usr <username for the DB> -pass <password to the DB>` (For Mac/Linux)  
+  `./booleans -db <IP to your DB server:PORT> -usr <username for the DB> -pass <password to the DB>` (For Mac/Linux)  
   or  
-  `booleans.exe -ip <IP to your DB server:PORT> -usr <username for the DB> -pass <password to the DB>` (For Windows)
+  `booleans.exe -db <IP to your DB server:PORT> -usr <username for the DB> -pass <password to the DB>` (For Windows)
     - if flag `-ip` is not provided, the service assumes that the DB server is running at "127.0.0.1:3306"
     - if `-usr` flag is not provided, the service assumes a username of root (This may not be safe in critical applications)
     - if `-pass` flag is not provided, the service assumes password to be empty.  
-    
+
 *Note: Behaviour on Windows and Linux has not been thoroughly tested. Users are welcome to contribute for the same*
 #### Using a Docker image
 *Note that due to limitations and testing conveniences, the docker image only connects to a MySQL server on the localhost for now*
 1. First run the following-
 `docker pull tipsbypullak/booleans:init //If you want a complete Docker image,that is, the src code will be included in the image`
 
-2.  - If you are on Mac/Windows run this next-
-`docker run --rm -it -p 8080:8080 booleans`
-This will expose the docker container port 8080 to host port 8080
+2.  - If you are on Mac or Windows(not tested yet, contributions are welcome) run this next-
+`docker run --name booleans_svc --rm -it -p 8080:8080 booleans ./main -db <IP to the DB server:PORT> -usr <username for the DB> -pass <password to the DB>`  
+`<IP to the DB server:PORT>` shall be `host.docker.interna;:3306` if you want to connect to a DB server hosted on your docker host. Also, this will expose the docker container port 8080 to host port 8080
     - Linux has NOT been tested due to `host.docker.internal` being not supported. Testers and contributors are welcome to try the following command and modify the dockerfile accordingly-
-`docker run -network=host --rm -it -p 8080:8080 booleans`
+`docker run --network=host --name booleans_svc --rm -it -p 8080:8080 booleans ./main -db <IP to the DB server:PORT> -usr <username for the DB> -pass <password to the DB>`
 ---
 
 ### Using the boolean service
