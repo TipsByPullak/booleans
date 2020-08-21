@@ -7,20 +7,22 @@ I took it up as a small project to learn [gin](https://github.com/gin-gonic/gin)
 #### *This project is still a work in progress. The README will be updated as things move*
 #### TODO List-
 1. Implement automatic creation of database in the DB server
-2. Use file/env reading to get parameters such as DB_IP, DB_username and DB_password. remember that docker implementation has to handle this differently.
-3. Implement tests for the current code
-4. Add support for OAuth/JWT, Concurrency with sync and mutex
+2. Implement tests for the current code
+3. Add support for OAuth/JWT, Concurrency with sync and mutex
 
 ___
 
 ### Starting the boolean service
 
-Please make sure that you have a MySQL server running and there's a user `root` with no password set up for now. Moreover the server should have a DB named mysql (Will be corrected for in future commits)
-Please provide the address and port of the server in `main.go:12` under the variable `svPath`. Working on making this simpler.
+Please make sure that you have a MySQL server running.
+The server should have a DB named mysql (Will be corrected for in future commits)
 #### Using a local copy of the source
 1. Clone using `git clone https://github.com/TipsByPullak/booleans`
 2. Change your directory to `booleans` (as cloned above) and run `go build`. (Assuming a proper setup of the pre-requisites, hoping no error pops up for you)
-3. run `./booleans` (For Mac/Linux) or `booleans.exe` (For Windows)
+3. run `./booleans -ip <IP to your DB server:PORT> -usr <username for the DB> -pass <password to the DB>` (For Mac/Linux) or `booleans.exe -ip <IP to your DB server:PORT> -usr <username for the DB> -pass <password to the DB` (For Windows)
+  - if flag `-ip` is not provided, the service assumes that the DB server is running at "127.0.0.1:3306"
+  - if `-usr` flag is not provided, the service assumes a username of root (This may not be safe in critical applications)
+  - if `-pass` flag ins not provided, the service assumes password to be empty.
 *Note: Behaviour on Windows and Linux has not been thoroughly tested. Users are welcome to contribute for the same*
 #### Using a Docker image
 *Note that due to limitations and testing conveniences, the docker image only connects to a MySQL server on the localhost for now*
