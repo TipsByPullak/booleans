@@ -20,9 +20,9 @@ The server should have a DB named mysql (Will be corrected for in future commits
 1. Clone using `git clone https://github.com/TipsByPullak/booleans`
 2. Change your directory to `booleans` (as cloned above) and run `go build`. (Assuming a proper setup of the pre-requisites, hoping no error pops up for you)
 3. run `./booleans -ip <IP to your DB server:PORT> -usr <username for the DB> -pass <password to the DB>` (For Mac/Linux) or `booleans.exe -ip <IP to your DB server:PORT> -usr <username for the DB> -pass <password to the DB` (For Windows)
-  - if flag `-ip` is not provided, the service assumes that the DB server is running at "127.0.0.1:3306"
-  - if `-usr` flag is not provided, the service assumes a username of root (This may not be safe in critical applications)
-  - if `-pass` flag ins not provided, the service assumes password to be empty.
+    - if flag `-ip` is not provided, the service assumes that the DB server is running at "127.0.0.1:3306"
+    - if `-usr` flag is not provided, the service assumes a username of root (This may not be safe in critical applications)
+    - if `-pass` flag ins not provided, the service assumes password to be empty.
 *Note: Behaviour on Windows and Linux has not been thoroughly tested. Users are welcome to contribute for the same*
 #### Using a Docker image
 *Note that due to limitations and testing conveniences, the docker image only connects to a MySQL server on the localhost for now*
