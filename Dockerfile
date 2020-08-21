@@ -19,7 +19,6 @@ COPY go.mod go.sum ./
 
 # Copy the source from the current directory to the Working Directory inside the container
 COPY . .
-COPY db_docker/db.go ./db
 
 # Build the Go app
 RUN go build -o main .
