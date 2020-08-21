@@ -35,7 +35,7 @@ The server should have a DB named mysql (Will be corrected for in future commits
 
 2.  - If you are on Mac or Windows(not tested yet, contributions are welcome) run this next-
 `docker run --name booleans_svc --rm -it -p 8080:8080 booleans ./main -db <IP to the DB server:PORT> -usr <username for the DB> -pass <password to the DB>`  
-IMPORTANT: `<IP to the DB server:PORT>` shall be set as `host.docker.internal:3306` if you want to connect to a DB server hosted on your docker host. Also, this will expose the docker container port 8080 to host port 8080
+**IMPORTANT**: `<IP to the DB server:PORT>` shall be set as `host.docker.internal:3306` if you want to connect to a DB server hosted on your docker host. Also, this will expose the docker container port 8080 to host port 8080
     - Linux has NOT been tested due to `host.docker.internal` being not supported. Testers and contributors are welcome to try the following command and modify the dockerfile accordingly-
 `docker run --network=host --name booleans_svc --rm -it -p 8080:8080 booleans ./main -db <IP to the DB server:PORT> -usr <username for the DB> -pass <password to the DB>`
 ---
