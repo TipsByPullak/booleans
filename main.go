@@ -3,14 +3,18 @@ package main
 import (
 	"booleans/crudsvc"
 	"booleans/db"
+	"flag"
 
 	"github.com/gin-gonic/gin"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 func main() {
-	svPath := "127.0.0.1:3306"
-	db := db.StartConn(svPath)
+	dbPath := flag.String("db", "127.0.0.1:3306", "Used to provide the path to the MySQL server")
+	dbUsr := flag.String("usr", "root", "The username used to access the DB")
+	dbPass := flag.String("pass", "", "The passweord to the database")
+	flag.Parse()
+	db := db.StartConn(*dbPath, *dbUsr, *dbPass)
 	defer db.Close()
 	router := gin.Default()
 

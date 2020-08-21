@@ -8,9 +8,7 @@ import (
 )
 
 //StartConn : Function called to initialise a connection to the DB
-func StartConn(svPath string) *gorm.DB {
-	usr := "root"
-	pass := ""
+func StartConn(svPath string, usr string, pass string) *gorm.DB {
 	if pass != "" {
 		pass = ":" + pass
 	}
